@@ -7,6 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"net/http"
 	"testing"
+	"time"
 )
 
 func TestMiddleware(t *testing.T) {
@@ -23,6 +24,7 @@ func TestMiddleware(t *testing.T) {
 		{
 			path: "/",
 			handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				time.Sleep(2 * time.Second)
 				w.WriteHeader(http.StatusOK)
 				fmt.Fprint(w, "hello world")
 			}),
